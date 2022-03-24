@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/cv projects/Movies App/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
+        <entry key="..\:/cv projects/Movies App/app/src/main/res/layout/fragment_popular_movie.xml" value="0.25416666666666665" />
         <entry key="..\:/cv projects/Movies App/app/src/main/res/layout/fragment_top_rated_movie.xml" value="0.13020833333333334" />
+        <entry key="..\:/cv projects/Movies App/app/src/main/res/layout/fragment_upcoming_movie.xml" value="0.25416666666666665" />
       </map>
     </option>
   </component>
