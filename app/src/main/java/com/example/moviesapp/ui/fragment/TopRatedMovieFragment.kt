@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviesapp.data.remote.MovieService
 import com.example.moviesapp.data.repository.MovieRepository
 import com.example.moviesapp.databinding.FragmentTopRatedMovieBinding
 import com.example.moviesapp.factory.MovieViewModelFactory
+import com.example.moviesapp.ui.adapter.rv_top_rated_adapter
 import com.example.moviesapp.ui.viewmodel.MovieViewModel
 import com.example.moviesapp.utils.Constants
 
@@ -20,6 +22,7 @@ class TopRatedMovieFragment : Fragment() {
     private var _binding: FragmentTopRatedMovieBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MovieViewModel
+    private lateinit var adapter: rv_top_rated_adapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,6 +31,9 @@ class TopRatedMovieFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentTopRatedMovieBinding.inflate(inflater, container, false)
         val view = binding.root
+        adapter = rv_top_rated_adapter()
+        binding.rvTopRatedMovies.adapter = adapter
+        binding.rvTopRatedMovies.layoutManager = LinearLayoutManager(view.context)
         return view
     }
 
@@ -43,6 +49,7 @@ class TopRatedMovieFragment : Fragment() {
                 .get(MovieViewModel::class.java)
 
         viewModel.topRatedMovie.observe(viewLifecycleOwner, {
+            adapter.setMovieList(it.results)
             Log.d("top rated", it.results.toString())
         })
     }
