@@ -60,16 +60,29 @@
             app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
         <TextView
-            android:id="@+id/tv_popularity"
+            android:id="@+id/tv_vote_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:padding="4dp"
-            android:text="1400"
+            android:text="7.4"
             android:textColor="@color/black"
             android:textSize="16sp"
             app:layout_constraintStart_toEndOf="@id/mcv_poster"
             app:layout_constraintTop_toBottomOf="@id/tv_overview" />
+
+        <TextView
+            android:id="@+id/tv_vote_average"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:padding="4dp"
+            android:text="7.4"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_vote_count"
+            app:layout_constraintStart_toEndOf="@id/tv_vote_count"
+            app:layout_constraintTop_toTopOf="@id/tv_vote_count" />
 
         <TextView
             android:id="@+id/tv_language"
@@ -79,9 +92,9 @@
             android:padding="4dp"
             android:text="language"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@id/tv_popularity"
+            app:layout_constraintBottom_toBottomOf="@id/tv_vote_average"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tv_popularity" />
+            app:layout_constraintTop_toTopOf="@id/tv_vote_average" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
