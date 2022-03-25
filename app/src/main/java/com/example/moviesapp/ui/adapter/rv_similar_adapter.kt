@@ -11,32 +11,27 @@ import com.bumptech.glide.Glide
 import com.example.moviesapp.R
 import com.example.moviesapp.data.model.movie.MovieResult
 
-class rv_top_rated_adapter(val context: Context?, private var listener: onMovieClickListener) :
-    RecyclerView.Adapter<rv_top_rated_adapter.RVViewHolder>() {
+class rv_similar_adapter(val context: Context?) :
+    RecyclerView.Adapter<rv_similar_adapter.RVViewHolder>() {
 
-    private var topRatedMovies = listOf<MovieResult>()
+    private var similarMovie = listOf<MovieResult>()
 
-    fun setMovieList(movies: List<MovieResult>) {
-        this.topRatedMovies = movies
+    fun setSimilarMovieList(movie: List<MovieResult>) {
+        this.similarMovie = movie
         notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RVViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.custom_top_rated_movie, parent, false)
+            .inflate(R.layout.custom_similar, parent, false)
         return RVViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: RVViewHolder, position: Int) {
-        val currentMovie = topRatedMovies[position]
-        holder.itemView.setOnClickListener {
-            listener.onMovieClick(topRatedMovies[position])
-        }
+        val currentMovie = similarMovie[position]
+
         holder.title.text = currentMovie.title
         holder.overview.text = currentMovie.overview
-        holder.language.text = currentMovie.original_language
-        holder.vote_average.text = "${currentMovie.vote_average}%"
-        holder.vote_count.text = "${currentMovie.vote_count} Votes"
         if (context != null) {
             Glide.with(context)
                 .load("https://image.tmdb.org/t/p/w500" + currentMovie.poster_path)
@@ -45,20 +40,13 @@ class rv_top_rated_adapter(val context: Context?, private var listener: onMovieC
     }
 
     override fun getItemCount(): Int {
-        return topRatedMovies.size
+        return similarMovie.size
     }
 
     class RVViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title: TextView = itemView.findViewById(R.id.tv_title)
         val overview: TextView = itemView.findViewById(R.id.tv_overview)
         val poster: ImageView = itemView.findViewById(R.id.iv_poster)
-        val language: TextView = itemView.findViewById(R.id.tv_language)
-        val vote_count: TextView = itemView.findViewById(R.id.tv_vote_count)
-        val vote_average: TextView = itemView.findViewById(R.id.tv_vote_average)
-    }
-
-    interface onMovieClickListener {
-        fun onMovieClick(movieResult: MovieResult)
     }
 
 }

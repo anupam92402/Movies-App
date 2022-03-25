@@ -2,7 +2,6 @@ package com.example.moviesapp.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ import com.example.moviesapp.ui.activity.DetailScreenActivity
 import com.example.moviesapp.ui.adapter.rv_top_rated_adapter
 import com.example.moviesapp.ui.viewmodel.MovieViewModel
 import com.example.moviesapp.utils.Constants
-
 
 class TopRatedMovieFragment : Fragment(), rv_top_rated_adapter.onMovieClickListener {
 
@@ -53,7 +51,6 @@ class TopRatedMovieFragment : Fragment(), rv_top_rated_adapter.onMovieClickListe
 
         viewModel.topRatedMovie.observe(viewLifecycleOwner, {
             adapter.setMovieList(it.results)
-            Log.d("top rated", it.results.toString())
         })
     }
 

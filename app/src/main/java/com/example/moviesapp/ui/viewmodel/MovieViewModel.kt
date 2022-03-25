@@ -1,24 +1,29 @@
 package com.example.moviesapp.ui.viewmodel
 
-
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.moviesapp.data.model.movie.MovieResponse
 import com.example.moviesapp.data.repository.MovieRepository
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
+class MovieViewModel constructor(private val repository: MovieRepository) : ViewModel() {
     init {
-        GlobalScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.getUpcomingMovies()
         }
-        GlobalScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.getTopRatedMovies()
         }
-        GlobalScope.launch(Dispatchers.IO) {
+        viewModelScope.launch(Dispatchers.IO) {
             repository.getPopularMovies()
+        }
+    }
+
+    fun search(search: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.searchMovies(search)
         }
     }
 
@@ -30,5 +35,8 @@ class MovieViewModel(private val repository: MovieRepository) : ViewModel() {
 
     val topRatedMovie: LiveData<MovieResponse>
         get() = repository.topRatedMovies
+
+    val searchMovie: LiveData<MovieResponse>
+        get() = repository.searchMovies
 
 }

@@ -32,10 +32,11 @@ class rv_popular_adapter(val context: Context?, private var listener: onMovieCli
         holder.itemView.setOnClickListener {
             listener.onMovieClick(popularMovies[position])
         }
-        currentMovie.popularity = currentMovie.popularity / 100
+        val popularity = currentMovie.popularity / 100
+        val value = popularity.toString().subSequence(0, 4)
         holder.title.text = currentMovie.title
         holder.overview.text = currentMovie.overview
-        holder.popularity.text = currentMovie.popularity.toString()
+        holder.popularity.text = "$value%"
         holder.language.text = currentMovie.original_language
         if (context != null) {
             Glide.with(context)

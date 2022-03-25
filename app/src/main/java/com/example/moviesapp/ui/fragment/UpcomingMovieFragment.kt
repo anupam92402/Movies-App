@@ -2,7 +2,6 @@ package com.example.moviesapp.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ import com.example.moviesapp.ui.activity.DetailScreenActivity
 import com.example.moviesapp.ui.adapter.rv_upcoming_adapter
 import com.example.moviesapp.ui.viewmodel.MovieViewModel
 import com.example.moviesapp.utils.Constants
-
 
 class UpcomingMovieFragment : Fragment(), rv_upcoming_adapter.onMovieClickListener {
 
@@ -53,7 +51,6 @@ class UpcomingMovieFragment : Fragment(), rv_upcoming_adapter.onMovieClickListen
 
         viewModel.upcomingMovie.observe(viewLifecycleOwner, {
             adapter.setMovieList(it.results)
-            Log.d("upcoming", it.results.toString())
         })
     }
 
